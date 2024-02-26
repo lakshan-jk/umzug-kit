@@ -21,6 +21,7 @@
     "mongodb-migrate": "^2.0.2",
     "mongoose": "^8.2.0",
     "pino": "^8.19.0",
+    "tsconfig-paths": "^4.2.0",
     "umzug": "^3.7.0"
   },
   "devDependencies": {

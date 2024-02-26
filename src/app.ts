@@ -1,5 +1,5 @@
 
-import { MongoClient, Db } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { Umzug, MigrationParams } from 'umzug';
 import path from 'path';
 
@@ -15,19 +15,25 @@ async function connectToMongo(): Promise<any> {
   return client.db(dbName);
 }
 
+/**
+ * Runs database migrations using umzug.
+ * Connects to the MongoDB database, configures umzug, and runs
+ * pending migrations up to latest. Closes database connection
+ * when finished.
+ */
 async function runMigrations(): Promise<void> {
   const db = await connectToMongo();
-  
+
   const umzug = new Umzug({
     migrations: {
-      glob: 'migrations/*.ts', // define the path over here
+      glob: "migrations/*.ts", // define the path over here
       resolve: (params: MigrationParams<any>) => {
         //@ts-ignore
         return require(path.resolve(__dirname, params.path));
       },
     },
     //@ts-ignore
-    storage: 'mongodb',
+    storage: "mongodb",
     storageOptions: {
       connection: db,
     },
@@ -36,9 +42,9 @@ async function runMigrations(): Promise<void> {
 
   try {
     await umzug.up();
-    console.log('Migrations applied successfully');
+    console.log("Migrations applied successfully");
   } catch (error) {
-    console.error('Error applying migrations:', error);
+    console.error("Error applying migrations:", error);
   } finally {
     await db.client.close();
   }
