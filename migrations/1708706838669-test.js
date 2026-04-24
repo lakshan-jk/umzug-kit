@@ -14,6 +14,7 @@ const up = async () => {
         await client.close();
     }
 };
+
 exports.up = up;
 const down = async () => {
     const client = new mongodb_1.MongoClient(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });

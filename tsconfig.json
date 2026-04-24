@@ -1,22 +1,33 @@
 {
-    "extends": "fastify-tsconfig",
-    "compilerOptions": {
-      "esModuleInterop": true,
-      "strict": false,
-      "noImplicitAny": false,
-      "outDir": "dist",
-      "sourceMap": true,
-      "baseUrl":".",
-      "skipLibCheck": true,
-      // "resolveJsonModule": false,
-      "paths":{
-        "@/*":["./src/*"]
-      },
+  "compilerOptions": {
+    // Base options
+    "target": "es2020", // Adjust target ECMAScript version as needed
+    "module": "commonjs", // Specify module system (e.g., commonjs, esnext)
+    "outDir": "./dist", // Specify output directory for compiled JavaScript files
+    "sourceMap": true, // Generate source maps for debugging
+    "baseUrl": ".", // Set the base URL for module resolution
+    "skipLibCheck": true, // Skip type checking for library declarations
+    "esModuleInterop": true, // Enable interop between CommonJS and ES modules
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+
+    // Type safety options
+    "strict": true, // Enable strict type checking
+    "noImplicitAny": true, // Prevent implicit any type assignments
+    "noImplicitThis": true, // Disallow implicit `this` references
+    "strictNullChecks": true, // Enable strict null checks
+    "noUnusedLocals": true, // Warn about unused local variables
+    "noUnusedParameters": true, // Warn about unused parameters
+
+    // Module resolution options
+    "paths": {
+      "@/*": ["./src/*"] // Configure custom module resolution paths
     },
-    "include": ["src/**/*.ts", "src/utils/encryption-decryption.js",],
-    "ts-node":{
-      "require":["tsconfig-paths/register"]
-    }
-  }
-  
-  
+
+    // Other options (optional)
+    "incremental": true, // Enable incremental compilation for faster rebuilds
+
+    "lib": ["es2020", "dom"] // Include necessary library declarations
+  },
+  "include": ["src/**/*.ts"], // Specify the files to include in compilation
+  "exclude": ["node_modules"] // Exclude node_modules from compilation
+}

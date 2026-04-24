@@ -20,7 +20,7 @@ ${fields
   .map(
     (field) =>
       `  ${field.name}: { type: ${field.type},${
-        field.required ? " required: true," : ""
+        field.required ? " required: true," : "required: false,"
       } },`
   )
   .join("\n")}
@@ -66,9 +66,9 @@ function generateSchemaModelTypes(
   saveToFile(modelContent, modelPath);
 }
 
-const collectionName = "Student";
+const collectionName = "etssstin";
 const fields: Field[] = [
-  { name: "name", type: "String", required: true },
+  { name: "name", type: "String" },
   { name: "age", type: "Number", required: true },
   { name: "grade", type: "String", required: true },
 ];

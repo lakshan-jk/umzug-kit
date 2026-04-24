@@ -13,7 +13,7 @@
     "generate-schema-model": "ts-node scripts/generate-schema-model.ts"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.32.14",
+    "@sinclair/typebox": "^0.29.6",
     "fastify": "^3.20.1",
     "fastify-tsconfig": "^2.0.0",
     "migration": "^0.3.0",
